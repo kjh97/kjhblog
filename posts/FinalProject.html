@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jiehui Kwa">
+<meta name="dcterms.date" content="2023-03-14">
+<meta name="description" content="The Happiness Data Project">
+
+<title>kjhblog - Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">kjhblog</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Final Project</h1>
+                  <div>
+        <div class="description">
+          The Happiness Data Project
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Jiehui Kwa </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 14, 2023</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">March 14, 2023</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="the-happiness-data-project" class="level1">
+<h1>The Happiness Data Project</h1>
+<section id="project-description" class="level3">
+<h3 class="anchored" data-anchor-id="project-description">Project Description</h3>
+<p>The data I will be analyzing in my final project was gathered from the World Happiness Report (by the Gallup World Survey), which seeks to measure and make more concrete what has always been a very subjective and abstract, yet an infinitely integral aspect of human life – happiness.</p>
+<p><strong>Data:</strong> <a href="&quot;https://www.kaggle.com/datasets/jahaidulislam/world-happiness-report-2005-2021&quot;">World Happiness Reports from 2005-2021</a></p>
+<p>Happiness is something that all humans crave and desire. From Aristotle who espoused a eudaimonic and virtue-driven happiness, to Epicurus who advocated for hedonism and embracing feelings of pleasure, philosophers have long discussed and debated what happiness entails, and how we as humans can seek to achieve it. Nonetheless, it remains as enigmatic and relevant as ever, with mental health awareness on the rise and nascent fields like positive psychology dedicated to the study of happiness. In a way, it seems like there has been little to no progress made in the past centuries on how we can go about achieving this ever-elusive goal. Yet, perhaps it was this very sense of abstruseness that has driven my lifelong fascination with happiness, well-being, and the factors that influence it.</p>
+<p>The question then arises – how can I approach a topic so abstract and nuanced, when it has even stumped humankind for centuries? Well, I believe the answer to that is, data. By looking at happiness through the lens of data, I hope to uncover and analyze patterns in happiness around the world, and hopefully gain new insights into what factors affect happiness.</p>
+</section>
+<section id="research-questions" class="level3">
+<h3 class="anchored" data-anchor-id="research-questions">Research Questions</h3>
+<ol type="1">
+<li><p>How do economic factors affect happiness?</p></li>
+<li><p>How does one’s social environment affect happiness?</p></li>
+<li><p>How has global happiness been affected by the COVID-19 pandemic?</p></li>
+</ol>
+</section>
+<section id="data-summary" class="level2">
+<h2 class="anchored" data-anchor-id="data-summary">Data Summary</h2>
+<p>The World Happiness Report data that I have used for this project was preprocessed, synthesized, and published by Jahaidul Islam on kaggle. First, I downloaded and imported the csv file as a pandas dataframe, which will later allow me to manipulate and analyze the data.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>hp_df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/kjh97/DH-140/main/data/World%20Happiness%20Report%202005-2021.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, I sorted the data according to the Happiness Score as it was previously sorted by country name.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hp_df.sort_values(<span class="st">"Happiness Score"</span>, ascending <span class="op">=</span> <span class="va">False</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hp_df.set_index(<span class="st">'Country'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This table below provides a brief description and statistical summary of the different metrics that can be found in the data, such as ‘Social support’ and ‘Life expectancy’, which are factors that influence happiness. The ‘Happiness Score’ is the average happiness rating assigned to a country based on a self-report well-being assessment known as the Cantril Ladder, which measures well-being on a scale of 1 to 10. There are three main categorizations based on the scores – scores above 7 are ‘Thriving’ (strong and consistent well-being), scores from 4-7 are ‘Struggling’ (moderate and inconsistent well-being), and scores 4 and below are ‘Suffering’ (well-being at high risk).</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hp_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Year</th>
+      <th>Happiness Score</th>
+      <th>Log GDP per capita</th>
+      <th>Social support</th>
+      <th>Life expectancy</th>
+      <th>Freedom</th>
+      <th>Generosity</th>
+      <th>Perceptions of corruption</th>
+      <th>Positive affect</th>
+      <th>Negative affect</th>
+      <th>Confidence in national government</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2089.000000</td>
+      <td>2089.000000</td>
+      <td>2062.000000</td>
+      <td>2076.000000</td>
+      <td>2031.000000</td>
+      <td>2057.000000</td>
+      <td>2009.000000</td>
+      <td>1976.000000</td>
+      <td>2065.000000</td>
+      <td>2073.000000</td>
+      <td>1873.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2013.727621</td>
+      <td>5.473747</td>
+      <td>9.378408</td>
+      <td>0.811542</td>
+      <td>63.180326</td>
+      <td>0.745462</td>
+      <td>0.000102</td>
+      <td>0.746474</td>
+      <td>0.651421</td>
+      <td>0.270544</td>
+      <td>0.483914</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>4.455614</td>
+      <td>1.115567</td>
+      <td>1.143520</td>
+      <td>0.118935</td>
+      <td>6.948546</td>
+      <td>0.140751</td>
+      <td>0.161082</td>
+      <td>0.186136</td>
+      <td>0.105954</td>
+      <td>0.085849</td>
+      <td>0.191515</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>2005.000000</td>
+      <td>2.178809</td>
+      <td>5.526723</td>
+      <td>0.290184</td>
+      <td>6.720000</td>
+      <td>0.257534</td>
+      <td>-0.335739</td>
+      <td>0.035198</td>
+      <td>0.178886</td>
+      <td>0.082737</td>
+      <td>0.068769</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2010.000000</td>
+      <td>4.651972</td>
+      <td>8.473547</td>
+      <td>0.747664</td>
+      <td>58.965000</td>
+      <td>0.651689</td>
+      <td>-0.113172</td>
+      <td>0.689840</td>
+      <td>0.570057</td>
+      <td>0.207652</td>
+      <td>0.334808</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2014.000000</td>
+      <td>5.405246</td>
+      <td>9.463269</td>
+      <td>0.834770</td>
+      <td>64.980003</td>
+      <td>0.767357</td>
+      <td>-0.023366</td>
+      <td>0.801339</td>
+      <td>0.662837</td>
+      <td>0.260328</td>
+      <td>0.467046</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2017.000000</td>
+      <td>6.294282</td>
+      <td>10.347656</td>
+      <td>0.904682</td>
+      <td>68.362499</td>
+      <td>0.857677</td>
+      <td>0.090584</td>
+      <td>0.870789</td>
+      <td>0.737176</td>
+      <td>0.321706</td>
+      <td>0.616302</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2021.000000</td>
+      <td>8.018934</td>
+      <td>11.665803</td>
+      <td>0.987343</td>
+      <td>74.349998</td>
+      <td>0.985178</td>
+      <td>0.706377</td>
+      <td>0.983276</td>
+      <td>0.883586</td>
+      <td>0.704590</td>
+      <td>0.993604</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>I also created another dataframe that provided me with the 2021 World Happiness Report data (latest available data from the dataset), in order to help me analyze and visualize the latest data on happiness.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hp21_df <span class="op">=</span> hp_df[hp_df[<span class="st">'Year'</span>]<span class="op">==</span><span class="dv">2021</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Based on the data, the following two tables represent the top 10 happiest countries in the world and their happiness scores, as well as the top 10 least happiest countries in the world and their happiness scores respectively.</p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Happiness Score'</span>].head(<span class="dv">10</span>).plot(xticks<span class="op">=</span>np.arange(<span class="dv">9</span>), </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                               kind<span class="op">=</span><span class="st">'barh'</span>, figsize<span class="op">=</span> (<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Happiness Score"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Top 10 Happiest Countries in 2021'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>Text(0.5, 1.0, 'Top 10 Happiest Countries in 2021')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Happiness Score'</span>].tail(<span class="dv">10</span>).plot(xticks<span class="op">=</span>np.arange(<span class="dv">9</span>), </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                               kind<span class="op">=</span><span class="st">'barh'</span>, figsize<span class="op">=</span> (<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Happiness Score"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Top 10 Least Happiest Countries in 2021'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>Text(0.5, 1.0, 'Top 10 Least Happiest Countries in 2021')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The following box plot shows the statistical distribution for Happiness Scores of countries in 2021, illustrating the minimum score, first quartile, median, third quartile, and maximum happiness score. Furthermore, it also shows the outliers, as can be seen by the two data points at the bottom of the graph, which based on the table above, likely represent the countries Lebanon and Afghanistan.</p>
+<div class="cell" data-scrolled="true" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Happiness Score'</span>].plot(kind <span class="op">=</span> <span class="st">'box'</span>, figsize <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Happiness Score"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Boxplot of Happiness Scores'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>Text(0.5, 1.0, 'Boxplot of Happiness Scores')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Meanwhile, the histogram provides a better understanding of how the happiness scores are distributed by frequency, giving a more visual representation of how the world as a whole is performing in their happiness scores.</p>
+<div class="cell" data-scrolled="true" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Happiness Score'</span>].plot(kind <span class="op">=</span> <span class="st">'hist'</span>, figsize <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Happiness Score"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Frequency distribution of Happiness Scores'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>Text(0.5, 1.0, 'Frequency distribution of Happiness Scores')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
+<section id="economic-factors-and-happiness" class="level3">
+<h3 class="anchored" data-anchor-id="economic-factors-and-happiness">Economic factors and Happiness</h3>
+<p>In this section, I will look at economic factors and their influence on happiness across countries. One of the most common ways to measure a country’s economic condition is through the gross domestic product (GDP) per capita, which calculates the average economic output of each individual within a nation.</p>
+<p><strong>Data Visualization 1:</strong> The histogram below illustrates the frequency distribution of the GDP per capita across countries featured in the World Happiness Report.</p>
+<div class="cell" data-scrolled="true" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Log GDP per capita'</span>].plot(kind <span class="op">=</span> <span class="st">'hist'</span>, figsize <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"GDP per capita (log)"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Frequency distribution of GDP per capita (log) '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>Text(0.5, 1.0, 'Frequency distribution of GDP per capita (log) ')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>Data Visualization 2:</strong> The scatterplot below illustrates the relationship between the GDP per capita and happiness scores for each country, and uses a best-fit line to draw an association between the two variables.</p>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">8</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Log GDP per capita'</span>])</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between GDP per capita and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>Text(0.5, 1.0, 'Relationship between GDP per capita and Happiness')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="social-environment-and-happiness" class="level3">
+<h3 class="anchored" data-anchor-id="social-environment-and-happiness">Social environment and Happiness</h3>
+<p>In this section, I will look at the relationship between one’s social environment and happiness across countries. Social support, as measured in the World Happiness Report, is operationalized by interpersonal connections and interactions such as with friends and partners, as well as social trust in others within their society. In addition, factors such as freedom to make choices, generosity, perceptions of corruption, and confidence in national government play a role in building a trusting social environment, and is believed to have a positive influence on happiness.</p>
+<p><strong>Data Visualization 3:</strong></p>
+<div class="cell" data-scrolled="true" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">8</span>,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Social support'</span>]) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Social support and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>Text(0.5, 1.0, 'Relationship between Social support and Happiness')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>Data Visualization 4:</strong></p>
+<div class="cell" data-scrolled="true" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">8</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Freedom'</span>])</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Freedom and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<pre><code>Text(0.5, 1.0, 'Relationship between Freedom and Happiness')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>Data Visualization 5:</strong></p>
+<div class="cell" data-scrolled="true" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">8</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Generosity'</span>])</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Generosity and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>Text(0.5, 1.0, 'Relationship between Generosity and Happiness')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>Data Visualization 6:</strong></p>
+<div class="cell" data-scrolled="true" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">8</span>,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Perceptions of corruption'</span>])</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Perceptions of corruption and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>Text(0.5, 1.0, 'Relationship between Perceptions of corruption and Happiness')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="FinalProject_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="covid-19-and-its-effects-on-happiness" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-and-its-effects-on-happiness">COVID-19 and its effects on Happiness</h3>
+<p>In this section, I will explore the effects of the COVID-19 pandemic on happiness. In order to determine its effects, I will compare and analyze various statistics from the 2019 vs 2021 World Happiness Report, such as average happiness scores and their statistical distribution.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
