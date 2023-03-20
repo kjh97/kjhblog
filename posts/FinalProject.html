@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jiehui Kwa">
-<meta name="dcterms.date" content="2023-03-14">
+<meta name="dcterms.date" content="2023-03-20">
 <meta name="description" content="The Happiness Data Project">
 
 <title>kjhblog - Final Project</title>
@@ -194,14 +194,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 14, 2023</p>
+        <p class="date">March 20, 2023</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">March 14, 2023</p>
+        <p class="date-modified">March 20, 2023</p>
       </div>
     </div>
       
@@ -390,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>Fig 1 below provides a statistical summary of the different metrics that can be found in the data, such as ‘Social support’ and ‘Life expectancy’, which are factors that influence the ‘Happiness Score’. The ‘Happiness Score’ refers to the average happiness rating assigned to a country based on a self-report well-being assessment known as the <strong>Cantril Ladder</strong>, which measures well-being on a scale of 1 to 10.</p>
+<p>Fig 1 provides a statistical summary of the different metrics that can be found in the data, such as ‘Social support’ and ‘Life expectancy’, which are factors that influence the ‘Happiness Score’. The ‘Happiness Score’ refers to the average happiness rating assigned to a country based on a self-report well-being assessment known as the <strong>Cantril Ladder</strong>, which measures well-being on a scale of 1 to 10.</p>
 <p><strong>Cantril Ladder:</strong> “Please imagine a ladder with steps numbered from zero at the bottom to 10 at the top. The top of the ladder represents the best possible life for you and the bottom of the ladder represents the worst possible life for you. On which step of the ladder would you say you personally feel you stand at this time? On which step do you think you will stand about five years from now?”</p>
 </section>
 </section>
@@ -401,102 +401,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hp21_df <span class="op">=</span> hp_df[hp_df[<span class="st">'Year'</span>]<span class="op">==</span><span class="dv">2021</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> hp21_df[<span class="st">'Year'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Based on the data, the following two tables (Fig 2 &amp; 3) represent the top 10 happiest countries in the world and the top 10 least happiest countries respectively.</p>
-<p><strong>Fig 2:</strong> Bar graph of the top 10 happiest countries in 2021</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Happiness Score'</span>].head(<span class="dv">10</span>).plot(xticks<span class="op">=</span>np.arange(<span class="dv">9</span>), </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                               kind<span class="op">=</span><span class="st">'barh'</span>, figsize<span class="op">=</span> (<span class="dv">6</span>,<span class="dv">6</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Happiness Score"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Top 10 Happiest Countries in 2021'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>Text(0.5, 1.0, 'Top 10 Happiest Countries in 2021')</code></pre>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p><strong>Fig 2:</strong> Heatmap of correlation coffecients between variables in the 2021 World Happiness Report</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(hp21_df.corr(),annot<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation between variables of 2021 World Happiness Report'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>Text(0.5, 1.0, 'Correlation between variables of 2021 World Happiness Report')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProject_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p><strong>Fig 3:</strong> Bar graph of the top 10 least happiest countries in 2021</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Happiness Score'</span>].tail(<span class="dv">10</span>).plot(xticks<span class="op">=</span>np.arange(<span class="dv">9</span>), </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                               kind<span class="op">=</span><span class="st">'barh'</span>, figsize<span class="op">=</span> (<span class="dv">6</span>,<span class="dv">6</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Happiness Score"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Top 10 Least Happiest Countries in 2021'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>Text(0.5, 1.0, 'Top 10 Least Happiest Countries in 2021')</code></pre>
+<p><strong>Fig 3:</strong> The scatterplot below illustrates the relationship between the GDP per capita and happiness scores for each country, and uses a best-fit line to draw an association between the two variables.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Log GDP per capita'</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between GDP per capita and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>Text(0.5, 1.0, 'Relationship between GDP per capita and Happiness')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="FinalProject_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p>The following box plot shows the statistical distribution for Happiness Scores of countries in 2021, illustrating the minimum score, first quartile, median, third quartile, and maximum happiness score. Furthermore, it also shows the outliers, as can be seen by the two data points at the bottom of the graph, which based on the table above, represent the countries Lebanon and Afghanistan.</p>
-<p><strong>Fig 4:</strong> Boxplot of Happiness Scores in 2021</p>
-<div class="cell" data-scrolled="true" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Happiness Score'</span>].plot(kind <span class="op">=</span> <span class="st">'box'</span>, figsize <span class="op">=</span> (<span class="dv">6</span>,<span class="dv">6</span>))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Happiness Score"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Boxplot of Happiness Scores'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>Text(0.5, 1.0, 'Boxplot of Happiness Scores')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<p>Meanwhile, the histogram provides a better understanding of how the happiness scores are distributed by frequency, giving a more visual representation of global happiness scores. This graph shows that there is a left-skewed distribution, which means most countries are concentrated on the right side of the graph with higher happiness scores.</p>
-<p><strong>Fig 5:</strong> Histogram of Happiness Scores in 2021</p>
-<div class="cell" data-scrolled="true" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Happiness Score'</span>].plot(kind <span class="op">=</span> <span class="st">'hist'</span>, figsize <span class="op">=</span> (<span class="dv">6</span>,<span class="dv">6</span>))</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Happiness Score"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Frequency distribution of Happiness Scores'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>Text(0.5, 1.0, 'Frequency distribution of Happiness Scores')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-</section>
-</section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-<p>The heat map displayed below highlights the correlation coefficient comparisons between each variable measured in the report.</p>
-<p><strong>Fig 6:</strong> Heatmap of correlation coffecients between variables in the 2021 World Happiness Report</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(hp21_df.corr(),annot<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation between variables of 2021 World Happiness Report'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>Text(0.5, 1.0, 'Correlation between variables of 2021 World Happiness Report')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<p><strong>Fig 7:</strong> The boxplot below illustrates the statistical distribution of the GDP per capita across countries featured in the World Happiness Report.</p>
-<div class="cell" data-scrolled="true" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Log GDP per capita'</span>].plot(kind <span class="op">=</span> <span class="st">'box'</span>, figsize <span class="op">=</span> (<span class="dv">6</span>,<span class="dv">6</span>))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Frequency distribution of GDP per capita (log) '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>Text(0.5, 1.0, 'Frequency distribution of GDP per capita (log) ')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<p><strong>Fig 8:</strong> The scatterplot below illustrates the relationship between the GDP per capita and happiness scores for each country, and uses a best-fit line to draw an association between the two variables.</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Log GDP per capita'</span>])</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between GDP per capita and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>Text(0.5, 1.0, 'Relationship between GDP per capita and Happiness')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<p><strong>Fig 9:</strong> This table shows the log GDP per capita of the 5 happiest countries in 2021.</p>
+<p><strong>Fig 4:</strong> This table shows the log GDP per capita of the 5 happiest countries in 2021.</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>hp21_df[[<span class="st">"Happiness Score"</span>, <span class="st">"Log GDP per capita"</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hp21_df[[<span class="st">"Happiness Score"</span>, <span class="st">"Log GDP per capita"</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 
 <div>
@@ -545,9 +480,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p><strong>Fig 10:</strong> This table shows the log GDP per capita of the 5 least happiest countries in 2021.</p>
+<p><strong>Fig 5:</strong> This table shows the log GDP per capita of the 5 least happiest countries in 2021.</p>
 <div class="cell" data-scrolled="true" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>hp21_df[[<span class="st">"Happiness Score"</span>, <span class="st">"Log GDP per capita"</span>]].tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hp21_df[[<span class="st">"Happiness Score"</span>, <span class="st">"Log GDP per capita"</span>]].tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 
 <div>
@@ -596,82 +531,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p><strong>Fig 11:</strong> The scatterplot below illustrates the relationship between life expectancy and happiness scores for each country, and uses a best-fit line to draw an association between the two variables.</p>
+<p><strong>Fig 6:</strong> The scatterplot below illustrates the relationship between life expectancy and happiness scores for each country, and uses a best-fit line to draw an association between the two variables.</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Life expectancy'</span>])</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Life Expectancy and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Life expectancy'</span>])</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Life Expectancy and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>Text(0.5, 1.0, 'Relationship between Life Expectancy and Happiness')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+<p><img src="FinalProject_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p><strong>Fig 12:</strong> This scatterplot depicts the relationship between social support and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
+<p><strong>Fig 7:</strong> This scatterplot depicts the relationship between social support and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Social support'</span>]) </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Social Support and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Social support'</span>]) </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Social Support and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>Text(0.5, 1.0, 'Relationship between Social Support and Happiness')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+<p><img src="FinalProject_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p><strong>Fig 13:</strong> This scatterplot depicts the relationship between the freedom to make choices and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
+<p><strong>Fig 8:</strong> This scatterplot depicts the relationship between the freedom to make choices and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Freedom'</span>])</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Freedom and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Freedom'</span>])</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Freedom and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>Text(0.5, 1.0, 'Relationship between Freedom and Happiness')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+<p><img src="FinalProject_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p><strong>Fig 14:</strong> This scatterplot depicts the relationship between perceptions of corruption and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
+<p><strong>Fig 9:</strong> This scatterplot depicts the relationship between perceptions of corruption and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Generosity'</span>])</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Generosity and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Generosity'</span>])</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Generosity and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>Text(0.5, 1.0, 'Relationship between Generosity and Happiness')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
+<p><img src="FinalProject_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p><strong>Fig 15:</strong> This scatterplot depicts the relationship between perceptions of corruption and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
+<p><strong>Fig 10:</strong> This scatterplot depicts the relationship between perceptions of corruption and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
 <div class="cell" data-scrolled="true" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Perceptions of corruption'</span>])</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Perceptions of Corruption and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Perceptions of corruption'</span>])</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Perceptions of Corruption and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>Text(0.5, 1.0, 'Relationship between Perceptions of Corruption and Happiness')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+<p><img src="FinalProject_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p><strong>Fig 16:</strong> This scatterplot depicts the relationship between confidence in national government and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
+<p><strong>Fig 11:</strong> This scatterplot depicts the relationship between confidence in national government and happiness scores, and uses a best-fit line to draw an association between the two variables.</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Confidence in national government'</span>])</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Confidence in National Government and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>hp21_df, kind<span class="op">=</span><span class="st">'reg'</span>, height <span class="op">=</span> <span class="dv">6</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                  x_vars<span class="op">=</span>[<span class="st">'Happiness Score'</span>],</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                  y_vars<span class="op">=</span>[<span class="st">'Confidence in national government'</span>])</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Confidence in National Government and Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>Text(0.5, 1.0, 'Relationship between Confidence in National Government and Happiness')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="FinalProject_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
+<p><img src="FinalProject_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -682,26 +617,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this section, I will look at economic factors and their relationship with happiness. The key economic indicator measured in the World Happiness Report is the log GDP per capita, but I will also explore the role of life expectancy, which is significantly associated with economic factors, and their relationships with happiness.</p>
 <p><strong>Relationship between GDP per capita and Happiness:</strong></p>
 <p>One of the most common ways to measure a country’s economic condition is through the gross domestic product (GDP) per capita, which calculates the average economic output of each individual within a nation.</p>
-<p>As can be seen from Fig 6 and 8, there is a strong positive correlation (r = 0.79) between GDP per capita and the happiness score. This indicates that economic output and wealth of a country has a positive relationship with the average happiness of its citizens and that the wealthier a country, the happier the people. This is likely the case since wealthier people have more purchasing power to improve their standard of living and quality of life, are more likely to be employed, and will be more able to afford basic neccessities and enjoy luxuries such as traveling, all of which will have a positive impact on happiness.</p>
+<p>As can be seen from Fig 2 and 3, there is a strong positive correlation (r = 0.79) between GDP per capita and the happiness score. This indicates that economic output and wealth of a country has a positive relationship with the average happiness of its citizens and that the wealthier a country, the happier the people. This is likely the case since wealthier people have more purchasing power to improve their standard of living and quality of life, are more likely to be employed, and will be more able to afford basic neccessities and enjoy luxuries such as traveling, all of which will have a positive impact on happiness.</p>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Log GDP per capita'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Log GDP per capita'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>9.533486973803571</code></pre>
 </div>
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Log GDP per capita'</span>].median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>hp21_df[<span class="st">'Log GDP per capita'</span>].median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>9.561124802</code></pre>
 </div>
 </div>
-<p>Also, as seen from Fig 7 and Fig 9, the top 5 happiest countries have a significantly higher log GDP per capita (mean = 10.83), than the mean (9.55) and median (9.56) of all countries in the report, demonstrating that the happiest countries are generally wealthier.</p>
-<p>Fig 10 also illustrates that the 5 least happiest countries have a significantly lower log GDP per capita (mean = 8.4) than the mean (9.55) and median (9.56) of all countries, indicating that the least happiest countries are generally poorer.</p>
+<p>Also, as seen from Fig 3 and 4, the top 5 happiest countries have a significantly higher log GDP per capita (mean = 10.83), than the mean (9.55) and median (9.56) of all countries in the report, demonstrating that the happiest countries are generally wealthier.</p>
+<p>Fig 5 also illustrates that the 5 least happiest countries have a significantly lower log GDP per capita (mean = 8.4) than the mean (9.55) and median (9.56) of all countries, indicating that the least happiest countries are generally poorer.</p>
 <p>However, since this (GDP per capita vs happiness) is a purely correlational relationship, no directionality or causality can be established. Also, the log GDP per capita metric does not capture wealth inequality within countries, which is an important economic indicator since countries with large wealth inequality would likely have a high GDP per capita yet low happiness scores. The insufficiency of the log GDP per capita metric in predicting happiness is best exemplified by the case of Lebanon, who despite their relatively high log GDP per capita (9.24), have the lowest happiness score (2.18), suggesting that while GDP per capita is an important indicator of happiness, there are many other factors at play.</p>
 <section id="relationship-between-life-expectancy-and-happiness" class="level4">
 <h4 class="anchored" data-anchor-id="relationship-between-life-expectancy-and-happiness">Relationship between Life Expectancy and Happiness:</h4>
-<p>According to Fig 6, there is a very strong positive correlation between GDP per capita and life expectancy (r = 0.86), indicating that when countries have a higher GDP per capita, they tend to have a higher average life expectancy. This can be explained by the fact that people with higher incomes will likely have greater access to higher quality healthcare services, sanitation, nutritious food, and shelter, all of which play a part in improving overall health and life expectancy.</p>
-<p>Furthermore, as seen in Fig 6 and Fig 11, there is also a strong positive correlation between life expectancy and happiness (r = 0.73), suggesting that people would likely be happier if they lived in countries with a higher life expectancy. Again, this comes as no surprise since the aforementioned factors associated with higher life expectancy, such as healthcare and food, would likely play a role in improving quality of life and happiness overall.</p>
+<p>According to Fig 2, there is a very strong positive correlation between GDP per capita and life expectancy (r = 0.86), indicating that when countries have a higher GDP per capita, they tend to have a higher average life expectancy. This can be explained by the fact that people with higher incomes will likely have greater access to higher quality healthcare services, sanitation, nutritious food, and shelter, all of which play a part in improving overall health and life expectancy.</p>
+<p>Furthermore, as seen in Fig 2 and 6, there is also a strong positive correlation between life expectancy and happiness (r = 0.73), suggesting that people would likely be happier if they lived in countries with a higher life expectancy. Again, this comes as no surprise since the aforementioned factors associated with higher life expectancy, such as healthcare and food, would likely play a role in improving quality of life and happiness overall.</p>
 </section>
 </section>
 <section id="social-environment-and-happiness" class="level3">
@@ -709,21 +644,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this section, I will look at the relationship between one’s social environment and happiness across countries. The social environment of a country can be represented by several of the metrics in the World Happiness Report, such as social support, freedom to make choices, generosity, perceptions of corruption, and confidence in national government. These factors all play a role in shaping the social environment of a country as they can influence the level of community, social, and institutional trust within a society. Then, I will examine how these factors correlate with happiness scores to determine if there the relationship between social environment and happiness.</p>
 <section id="relationship-between-social-support-and-happiness" class="level4">
 <h4 class="anchored" data-anchor-id="relationship-between-social-support-and-happiness">Relationship between Social Support and Happiness</h4>
-<p>Social support, as operationalized in the World Happiness Report, refers to having someone to count on in times of trouble. Having a strong social support system and having frequent interactions with them has been found to have positive effects on creating “feelings of love, care, self-esteem, and value”, all of which have direct implications on instilling feelings of happiness (Moeini et al., 2018). This is supported by the data, as observed in Fig 6 &amp; 12, where there is a strong positive correlation between social support and happiness (r = 0.72), which means that the greater the social support reported, the higher the happiness levels.</p>
+<p>Social support, as operationalized in the World Happiness Report, refers to having someone to count on in times of trouble. Having a strong social support system and having frequent interactions with them has been found to have positive effects on creating “feelings of love, care, self-esteem, and value”, all of which have direct implications on instilling feelings of happiness (Moeini et al., 2018). This is supported by the data, as observed in Fig 2 and 7, where there is a strong positive correlation between social support and happiness (r = 0.72), which means that the greater the social support reported, the higher the happiness levels.</p>
 </section>
 <section id="relationship-between-freedom-and-happiness" class="level4">
 <h4 class="anchored" data-anchor-id="relationship-between-freedom-and-happiness">Relationship between Freedom and Happiness</h4>
-<p>Freedom is measured by the self-reported level of freedom to choose what they can do with their lives. As seen in Fig 6 &amp; 13, there is a strong positive correlation between freedom and happiness (r = 0.61), which means that the greater the freedom reported, the happier the people. When people have more freedom, they are more able to live life the way they want, which is likely to lead to a happier and more fulfilling life. Furthermore, research has found that humans have an innate need for freedom, with ‘autonomy’ being a primary psychological need (Rahman &amp; Veenhoven, 2017). As such, if people perceived themselves to have low levels of freedom, it would almost be as if a primary need was taken away from them, and that would likely have adverse effects on happiness.</p>
+<p>Freedom is measured by the self-reported level of freedom to choose what they can do with their lives. As seen in Fig 2 and 8, there is a strong positive correlation between freedom and happiness (r = 0.61), which means that the greater the freedom reported, the happier the people. When people have more freedom, they are more able to live life the way they want, which is likely to lead to a happier and more fulfilling life. Furthermore, research has found that humans have an innate need for freedom, with ‘autonomy’ being a primary psychological need (Rahman &amp; Veenhoven, 2017). As such, if people perceived themselves to have low levels of freedom, it would almost be as if a primary need was taken away from them, and that would likely have adverse effects on happiness.</p>
 </section>
 <section id="relationship-between-generosity-and-happiness" class="level4">
 <h4 class="anchored" data-anchor-id="relationship-between-generosity-and-happiness">Relationship between Generosity and Happiness</h4>
-<p>Generosity is operationalized by the number of times people have donated to charity in a month. Country with higher levels of generosity would likely have a more inclusive and trusting society where people value the needs of others. In fact, studies on generosity and happiness have found that people who give money to charity or help others were more likely to be happier than those who did not (Aknin et al., 2013). However, as seen from Fig 6 and Fig 14, generosity only has a weak positive correlation with happiness (r = 0.14), which means that societies with higher levels of generosity do not necessarily have higher happiness scores, going against literature and what one would expect.</p>
+<p>Generosity is operationalized by the number of times people have donated to charity in a month. Country with higher levels of generosity would likely have a more inclusive and trusting society where people value the needs of others. In fact, studies on generosity and happiness have found that people who give money to charity or help others were more likely to be happier than those who did not (Aknin et al., 2013). However, as seen from Fig 2 and 4, generosity only has a weak positive correlation with happiness (r = 0.14), which means that societies with higher levels of generosity do not necessarily have higher happiness scores, going against literature and what one would expect.</p>
 </section>
 <section id="relationship-between-institutional-trust-and-happiness" class="level4">
 <h4 class="anchored" data-anchor-id="relationship-between-institutional-trust-and-happiness">Relationship between Institutional Trust and Happiness</h4>
 <p>Institutional trust, based on the data provided, can be measured by perceptions of corruption and confidence in national government, such as the legal system and the police. Countries with higher levels of institutional trust more likely provide its citizens with a greater sense of security and stability, which can improve happiness. However, this is not consistently represented in the data gathered.</p>
-<p>As seen from Fig 6 &amp; 15, there is a moderate negative correlation between perceptions of corruption and happiness (r = -0.45), which means that the lesser the perceived level of corruption in governments and businesses, there is generally higher levels of happiness. When perceived corruption is high, people have lower trust in institutions, which has further socioeconomic effects such as discouraging investment and political participation, which will have negative effects on well-being.</p>
-<p>On the other hand, as displayed in Fig 6 &amp; 16, there is no correlation between confidence in national government and happiness (r= -0.01), which means that levels of confidence in national government have no effect on happiness whatsoever. This is surprising as one would expect that with higher levels of confidence in national government, there would be greater trust in institutions’ ability to address citizens’ needs and tackling societal issues, which would lead to higher happiness. Also, past studies have found confidence in national government to be positively associated wiht happiness (Luhmann et al., 2012). As such, further exploration into the data has to be done to understand the reason for this aberration, such as errors in the dataset.</p>
+<p>As seen from Fig 2 and 10, there is a moderate negative correlation between perceptions of corruption and happiness (r = -0.45), which means that the lesser the perceived level of corruption in governments and businesses, there is generally higher levels of happiness. When perceived corruption is high, people have lower trust in institutions, which has further socioeconomic effects such as discouraging investment and political participation, which will have negative effects on well-being.</p>
+<p>On the other hand, as displayed in Fig 2 and 11, there is no correlation between confidence in national government and happiness (r= -0.01), which means that levels of confidence in national government have no effect on happiness whatsoever. This is surprising as one would expect that with higher levels of confidence in national government, there would be greater trust in institutions’ ability to address citizens’ needs and tackling societal issues, which would lead to higher happiness. Also, past studies have found confidence in national government to be positively associated wiht happiness (Luhmann et al., 2012). As such, further exploration into the data has to be done to understand the reason for this aberration, such as errors in the dataset.</p>
 </section>
 </section>
 </section>
